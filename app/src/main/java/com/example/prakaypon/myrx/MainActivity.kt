@@ -1,6 +1,7 @@
 package com.example.prakaypon.myrx
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -24,22 +25,41 @@ class MainActivity : AppCompatActivity() {
     lateinit var retrofit:Retrofit
     lateinit var recyclerView: RecyclerView
     lateinit var bt:Button
+    lateinit var linearLayout:LinearLayout
     var b :AlertDialog? = null
+
+    companion object //static variables
+    {
+        var arrayList2 = ArrayList<Int>().apply {
+            add(Color.RED)
+            add(Color.BLACK)
+            add(Color.GRAY)
+            add(Color.GREEN)
+            add(Color.YELLOW)
+            add(Color.CYAN)
+            add(Color.LTGRAY)
+            add(Color.DKGRAY)
+            add(Color.MAGENTA)
+            add(Color.WHITE)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        linearLayout=findViewById<LinearLayout>(R.id.linearLayout)
         recyclerView = findViewById<RecyclerView>(R.id.coupon_rv)
         bt = findViewById<Button>(R.id.bt1)
 
         recyclerView.layoutManager =LinearLayoutManager(this,LinearLayout.VERTICAL,false)
 
+
         val gson = GsonBuilder()
             .setLenient()
             .create()
 
-            retrofit = Retrofit.Builder()
+        retrofit = Retrofit.Builder()
             .baseUrl("http://www.zoftino.com/api/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -48,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         var dialogLayout = AlertDialog.Builder(this).apply {
             setTitle("Download.")
             setMessage("please wait..")
+
         }
 //        dialogLayout.setTitle("Download.")
 //        dialogLayout.setMessage("please wait..")
@@ -85,6 +106,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+
     private fun handleResults(storeCoupons: StroeCoupon) {
         if (storeCoupons.coupons!= null) {
 
@@ -92,6 +115,8 @@ class MainActivity : AppCompatActivity() {
             {
                 override fun onItemClick(position: Int)
                 {
+                    linearLayout.setBackgroundColor(arrayList2[position])
+                    recyclerView.setBackgroundColor(arrayList2[position])
                     Toast.makeText(applicationContext,"item = "+position,Toast.LENGTH_SHORT).show()
 
                 }

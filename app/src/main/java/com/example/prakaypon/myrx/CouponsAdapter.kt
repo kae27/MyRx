@@ -8,7 +8,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.coupon_item.view.*
 import org.jetbrains.annotations.NotNull
 
-class CouponsAdapter(val list: List<Coupon>,val listener: OnItemClickListener) : RecyclerView.Adapter<CouponsAdapter.ViewHolder>()
+class CouponsAdapter(val list: List<Coupon>,private val listener: OnItemClickListener) : RecyclerView.Adapter<CouponsAdapter.ViewHolder>()
 {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,12 +30,12 @@ class CouponsAdapter(val list: List<Coupon>,val listener: OnItemClickListener) :
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view)
     {
 
-        lateinit var textStore:TextView
-        lateinit var textCoupon:TextView
+        private lateinit var textStore:TextView
+        private lateinit var textCoupon:TextView
 
         fun bindView( coupon:Coupon,listener:CouponsAdapter.OnItemClickListener, position: Int)
         {
-            textStore = itemView.findViewById<TextView>(R.id.store)
+            textStore = itemView.findViewById(R.id.store)
             textCoupon = itemView.findViewById<TextView>(R.id.coupon).apply { this.text=coupon.coupon } //setText with apply
 
             textStore.text = coupon.store //mormal setText
