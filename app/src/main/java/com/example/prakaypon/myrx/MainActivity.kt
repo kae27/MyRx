@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
     private fun handleResults(storeCoupons: StroeCoupon) {
 
         storeCoupons.coupons.let {
-            val adapter = CouponsAdapter(storeCoupons.coupons, object :CouponsAdapter.OnItemClickListener
+            val adapter = CouponsAdapter(it, object :CouponsAdapter.OnItemClickListener
             {
                 override fun onItemClick(position: Int)
                 {
@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
             })
-            recyclerView.setAdapter(adapter)
+            recyclerView.adapter = adapter
 
             println("not null ")
         }
