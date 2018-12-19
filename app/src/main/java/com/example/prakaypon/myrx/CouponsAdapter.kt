@@ -36,7 +36,7 @@ class CouponsAdapter(val list: List<Coupon>,private val listener: OnItemClickLis
         fun bindView( coupon:Coupon,listener:CouponsAdapter.OnItemClickListener, position: Int)
         {
             textStore = itemView.findViewById(R.id.store)
-            textCoupon = itemView.findViewById<TextView>(R.id.coupon).apply { this.text=coupon.coupon } //setText with apply
+            textCoupon = itemView.findViewById<TextView>(R.id.coupon).apply { text=coupon.coupon } //setText with apply
 
             textStore.text = coupon.store //mormal setText
 

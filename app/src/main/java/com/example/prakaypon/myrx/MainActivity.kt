@@ -18,7 +18,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.GsonBuilder
-import java.text.FieldPosition
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        linearLayout=findViewById<LinearLayout>(R.id.linearLayout)
-        recyclerView = findViewById<RecyclerView>(R.id.coupon_rv)
-        bt = findViewById<Button>(R.id.bt1)
+        linearLayout=findViewById(R.id.linearLayout)
+        recyclerView = findViewById(R.id.coupon_rv)
+        bt = findViewById(R.id.bt1)
 
         recyclerView.layoutManager =LinearLayoutManager(this,LinearLayout.VERTICAL,false)
 
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
 
-        var dialogLayout = AlertDialog.Builder(this).apply {
+        val dialogLayout = AlertDialog.Builder(this).apply {
             setTitle("Download.")
             setMessage("please wait..")
 
@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity() {
                 {
                     linearLayout.setBackgroundColor(arrayList2[position])
                     recyclerView.setBackgroundColor(arrayList2[position])
-                    Toast.makeText(applicationContext,"item = "+position,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "item = $position",Toast.LENGTH_SHORT).show()
 
                 }
             })
