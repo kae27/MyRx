@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
             add(Color.MAGENTA)
             add(Color.WHITE)
         }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,8 +110,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun handleResults(storeCoupons: StroeCoupon) {
-        if (storeCoupons.coupons!= null) {
 
+        storeCoupons.coupons.let {
             val adapter = CouponsAdapter(storeCoupons.coupons, object :CouponsAdapter.OnItemClickListener
             {
                 override fun onItemClick(position: Int)
@@ -123,8 +124,7 @@ class MainActivity : AppCompatActivity() {
             })
             recyclerView.setAdapter(adapter)
 
-
-//            Log.i("test"," "+storeCoupons.coupons)
+            println("not null ")
         }
     }
 
